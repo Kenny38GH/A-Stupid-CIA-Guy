@@ -7,7 +7,7 @@ public class CharacterMotor : MonoBehaviour {
     // Animations du perso
     Animation animations;
 
-    // Vitesse de deplacement prout
+    // Vitesse de deplacement bobobo
     public float walkSpeed;
     public float runSpeed;
     public float turnSpeed;
