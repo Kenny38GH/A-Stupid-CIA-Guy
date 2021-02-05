@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CharacterMotor
     - FocusMove
+    - GuyControl
     - MenuPause
     - Orbit
     Unity.Rider.Editor.dll:
@@ -54,13 +55,15 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11738}
+      Script: {instanceID: 11868}
     - Class: 114
-      Script: {instanceID: 12464}
+      Script: {instanceID: 12588}
     - Class: 114
-      Script: {instanceID: 12756}
+      Script: {instanceID: 12594}
     - Class: 114
-      Script: {instanceID: 13718}
+      Script: {instanceID: 12886}
+    - Class: 114
+      Script: {instanceID: 13850}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 136
@@ -166,6 +169,12 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: No_Cursor
+  - hash:
+      serializedVersion: 2
       Hash: 234d407605354852c48e57df17c9a1c6
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -268,6 +277,12 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: 5f170942ee57c7a568f5bcfc7521adea
+    assemblyName: UnityEngine.TestRunner.dll
+    namespaceName: UnityEngine.TestTools
+    className: EnumerableTestState
+  - hash:
+      serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -320,6 +335,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.ProBuilder.dll
     namespaceName: UnityEngine.ProBuilder
     className: ColliderBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: 17d641bf171d1c4eb3709ec3c70b97f5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GuyControl
   - hash:
       serializedVersion: 2
       Hash: 1c7621d238c0298ba8fde3b433605e16
@@ -578,13 +599,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: No_Cursor
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Valentin/Desktop/A Stupid CIA Guy.exe
+  playerPath: C:/Users/cayri/Documents/13 - LE JEU/V3.0 Build/A Stupid CIA Guy.exe
