@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-
+//Salut les potes
 public class MenuPause : MonoBehaviour 
 {
 
