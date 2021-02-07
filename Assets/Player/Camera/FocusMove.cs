@@ -34,10 +34,6 @@ public class FocusMove : MonoBehaviour
     transform.rotation = Quaternion.Euler(0,yRotation,0);
     
      //transform.RotateAround(target.transform.position, Vector3.up, Input.GetAxis("Mouse X")* turnSpeed );
-     
-    
-    
-    
-    
     }
+    
 }
