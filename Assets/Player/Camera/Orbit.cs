@@ -33,10 +33,6 @@ public class Orbit : MonoBehaviour {
     {
         isCollided = Physics.CheckSphere(collidecheck.position, collidedistance, collidemask);
         Debug.LogError(isCollided);
-        while (IsColliding == true)
-        {
-            transform.position = target.position + new Vector3(0,0,2);
-        }
     }
     void LateUpdate()
      {
