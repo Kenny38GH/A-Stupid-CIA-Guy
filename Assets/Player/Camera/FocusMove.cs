@@ -15,15 +15,15 @@ public class FocusMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+    pointfoc.transform.position = target.transform.position;
+    transform.Translate(offsetX,offsetY,0);
         
-    pointfoc.transform.position = target.transform.position  ;
-    transform.Translate(offsetX,offsetY,0);    
     //radius = offsetX;
     //float h = Input.GetAxisRaw ("Mouse X");
     //transform.RotateAround (target.transform.position, Vector3.up, Time.deltaTime * h * 10);

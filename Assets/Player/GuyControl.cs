@@ -54,7 +54,9 @@ public class GuyControl : MonoBehaviour
         if (Input.GetKey(inputFront) && Input.GetKey(KeyCode.LeftShift))
         {
             transform.Translate(0, 0, runSpeed * Time.deltaTime);
-            animations.Play("run");
+            animations.Play("walk");
+            float yRotation = cam.transform.eulerAngles.y;
+            transform.rotation = Quaternion.Euler(0,yRotation,0);
         }
         // si on recule
         if (Input.GetKey(inputBack))
