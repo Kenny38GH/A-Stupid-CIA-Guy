@@ -6,13 +6,18 @@ public class Hold : MonoBehaviour
 {
     public Transform theDesttps;
     public Transform theDestfps;
+    public Transform emplacement;
+    public Transform emplacementtps;
     public string Prendre; 
     public Camera cam;
-    public float range = 30f;
+    public float rangegrab = 30f;
     bool fpsCam;
     bool tpsCam;
     public string inputfps;
     public string inputtps;
+    public Hold target;
+    public Weapon arme;
+    public bool oui = false;
 
     void Start ()
     {
@@ -44,10 +49,17 @@ public class Hold : MonoBehaviour
     void Grab()
     {
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position,cam.transform.forward, out hit, range))
+        if (Physics.Raycast(cam.transform.position,cam.transform.forward, out hit, rangegrab))
         {
-            Hold target = hit.transform.GetComponent<Hold>();
-            if(target != null)
+            if(arme == null)
+            {
+                arme = hit.transform.GetComponent<Weapon>();
+            }
+            if(target == null)
+            {
+                target = hit.transform.GetComponent<Hold>();
+            }
+            if(target != null && arme == null)
             {
             GetComponent<Rigidbody>().useGravity = false;
             GetComponent<Rigidbody>().freezeRotation = true;
@@ -63,6 +75,24 @@ public class Hold : MonoBehaviour
             }
             
             }
+            
+            if(arme != null)
+            {
+                GetComponent<Rigidbody>().useGravity = false;
+                GetComponent<Rigidbody>().freezeRotation = true;
+                oui = true;
+                if(fpsCam == true)
+                {
+                    arme.transform.position = emplacement.position;
+                    arme.transform.parent = GameObject.Find("Emplacement_arme").transform;
+                }
+                if(tpsCam == true)
+                {
+                    arme.transform.position = emplacementtps.position;
+                    arme.transform.parent = GameObject.Find("Emplacement_armetps").transform;
+                }
+                
+            }
         }
     }
 
@@ -71,5 +101,8 @@ public class Hold : MonoBehaviour
         this.transform.parent = null;
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().freezeRotation = false;
+        arme = null;
+        target = null;
+        oui = false;
     }
 }

@@ -17,21 +17,21 @@ public class Shooting : MonoBehaviour
     public float X;
     public float Y;
     public float Z;
-
+    public Hold hold;
 
     void Start()
     {
-        munitions = chargeur;
+        munitions = 0;
     }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && munitions != 0)
+        if(Input.GetButtonDown("Fire1") && munitions != 0 && hold.oui == true)
         {
             Shoot();
             munitions -=1;
         }
-        if(Input.GetKeyDown(Recharger))
+        if(Input.GetKeyDown(Recharger) && hold.oui == true)
         {
             munitions = chargeur;
         }
