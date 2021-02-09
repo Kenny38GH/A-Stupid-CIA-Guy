@@ -18,11 +18,14 @@ public class Hold : MonoBehaviour
     public Hold target;
     public Weapon arme;
     public bool oui = false;
+    public bool posarme = false;
+    
 
     void Start ()
     {
         tpsCam = true;
         fpsCam = false;
+        
     }
     void Update()
     {
@@ -39,21 +42,37 @@ public class Hold : MonoBehaviour
 
         if(Input.GetKey(Prendre))
         {
+            
             Grab();
+            
+            
         }
-        if (!Input.GetKey(Prendre))
+        if (!Input.GetKey(Prendre) )
         {
-            Leave();
+          Leave();
+        }
+        if (oui == false)
+        {
+           posarme = false;
         }
     }
     void Grab()
     {
+
+
+
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position,cam.transform.forward, out hit, rangegrab))
         {
             if(arme == null)
             {
+                
                 arme = hit.transform.GetComponent<Weapon>();
+                
+               
+
+                
+                
             }
             if(target == null)
             {
@@ -79,17 +98,50 @@ public class Hold : MonoBehaviour
             if(arme != null)
             {
                 GetComponent<Rigidbody>().useGravity = false;
+                
                 GetComponent<Rigidbody>().freezeRotation = true;
+                
+
                 oui = true;
                 if(fpsCam == true)
                 {
+                    if (oui == true && posarme == false)
+                    {
+                        
+                        float yRotation = cam.transform.eulerAngles.y;
+                        float xRotation = cam.transform.eulerAngles.x;
+                        float zRotation = cam.transform.eulerAngles.z;
+                        arme.transform.rotation = Quaternion.Euler(260-xRotation,+yRotation+180,0);
+                        posarme = true;
+                    }
+                    
                     arme.transform.position = emplacement.position;
                     arme.transform.parent = GameObject.Find("Emplacement_arme").transform;
+                 
+                    
                 }
                 if(tpsCam == true)
                 {
+                  
+
+                    
+                
+                    if (oui == true && posarme == false)
+                    {
+                        
+                        float yRotation = cam.transform.eulerAngles.y;
+                        float xRotation = cam.transform.eulerAngles.x;
+                        float zRotation = cam.transform.eulerAngles.z;
+                        arme.transform.rotation = Quaternion.Euler(260-xRotation,+yRotation+180,0);
+                        posarme = true;
+                    }
+                    
+
                     arme.transform.position = emplacementtps.position;
+                    
+                   
                     arme.transform.parent = GameObject.Find("Emplacement_armetps").transform;
+                    
                 }
                 
             }

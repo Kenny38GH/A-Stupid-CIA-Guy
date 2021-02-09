@@ -18,6 +18,8 @@ public class Shooting : MonoBehaviour
     public float Y;
     public float Z;
     public Hold hold;
+    public AudioClip Grosdeagledesfamilles;
+    public AudioSource AudioSource;
 
     void Start()
     {
@@ -30,6 +32,11 @@ public class Shooting : MonoBehaviour
         {
             Shoot();
             munitions -=1;
+            
+            AudioSource.PlayOneShot(Grosdeagledesfamilles,0.7f);
+            
+
+
         }
         if(Input.GetKeyDown(Recharger) && hold.oui == true)
         {
