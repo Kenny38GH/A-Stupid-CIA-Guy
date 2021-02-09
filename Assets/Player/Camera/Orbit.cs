@@ -4,51 +4,89 @@ using UnityEngine;
 
 public class Orbit : MonoBehaviour {
  
-     public float turnSpeed = 10.0f;
-     public Transform target;
-     public Transform cam;
-     
+    float rotationSpeed = 1;
+    public float zoomspeed = 100;
+    public Transform Player, cam;
+    public float mouseX, mouseY,zoom = 0;
+    public float X;
+    public float Y;
+    public float Z;
+    bool fpsCam;
+    bool tpsCam;
+    public string inputfps;
+    public string inputtps;
+    public GameObject partie1;
+    public GameObject partie2;
+    public GameObject partie3;
+    public GameObject partie4;
+    public GameObject partie5;
+    public float minZoom = 5.0f;
+    public float maxZoom = 250.0f;
 
-      
-    public float height = 1f;
-    public float distance = 2f;
-    private Vector3 offsetX;
-    private Vector3 offsetY;
-
-    bool IsColliding;
-    public Transform collidecheck;
-    public float collidedistance = 1.0f;
-    public LayerMask collidemask;
-    bool isCollided;
-    public float w =0;
-
-    void Start () {
- 
-         offsetX = new Vector3 (0, height, distance);
-         offsetY = new Vector3 (0, 0, distance);
-         isCollided = Physics.CheckSphere(collidecheck.position, collidedistance, collidemask);
-     }
+    void Start ()
+    {
+        tpsCam = true;
+        fpsCam = false;
+    }
   
     void Update()
     {
-        isCollided = Physics.CheckSphere(collidecheck.position, collidedistance, collidemask);
-        Debug.LogError(isCollided);
+    if(tpsCam == true)
+    {
+        transform.position = Player.transform.position;
+        transform.Translate (X,Y,Z);
+        zoom += Input.GetAxisRaw("Mouse ScrollWheel")* zoomspeed * Time.deltaTime;
+        transform.Translate (0,0,zoom);
+        
+        if(zoom <= maxZoom)
+        {
+            zoom = maxZoom;
+        }
+        if(zoom>= minZoom)
+        {
+            zoom = minZoom;
+        }
+        
+    }
+    if(fpsCam == true)
+    {
+        transform.position = Player.transform.position;
+        transform.Translate (0,2.3f,0.4f);
+    }
+    if(Input.GetKeyDown(inputfps) && fpsCam == false)
+    {
+        tpsCam = false;
+        fpsCam = true;
+        partie1.gameObject.SetActive(false);
+        partie2.gameObject.SetActive(false);
+        partie3.gameObject.SetActive(false);
+        partie4.gameObject.SetActive(false);
+        partie5.gameObject.SetActive(false);
+    }
+    if(Input.GetKeyDown(inputtps) && tpsCam == false)
+    {
+        tpsCam = true;
+        fpsCam = false;
+        partie1.gameObject.SetActive(true);
+        partie2.gameObject.SetActive(true);
+        partie3.gameObject.SetActive(true);
+        partie4.gameObject.SetActive(true);
+        partie5.gameObject.SetActive(true);
+    }
+    
     }
     void LateUpdate()
-     {
-        offsetX = Quaternion.AngleAxis (Input.GetAxis("Mouse X") * turnSpeed  , Vector3.up) * offsetY;
-         // transform.RotateAround(target.transform.position, new Vector3(1, 0, 0), 1.0f);
-        offsetY = Quaternion.AngleAxis (Input.GetAxis("Mouse Y") * turnSpeed  , new Vector3(1,0,0)) * offsetX;
-
-        transform.position = target.position + offsetX + offsetY;
-        transform.LookAt(target.position);
-        // transform.RotateAround(target.transform.position, new Vector3(1, 0, 0), 1.0f);
-        Debug.LogError(isCollided);
-        // Visée
-        if (Input.GetKey(KeyCode.Mouse1))
+    {
+        mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
+        mouseY -= Input.GetAxis("Mouse Y") * rotationSpeed;
+        if(fpsCam == true)
         {
-            transform.position = cam.position + new Vector3(0,0,2);
+            mouseY = Mathf.Clamp(mouseY, -80, 80);
         }
-
+        if(tpsCam == true)
+        {
+            mouseY = Mathf.Clamp(mouseY, -15, 60);
+        }        
+        cam.rotation = Quaternion.Euler(mouseY, mouseX,0);
     }
  }
