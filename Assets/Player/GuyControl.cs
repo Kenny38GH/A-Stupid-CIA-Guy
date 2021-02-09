@@ -40,7 +40,7 @@ public class GuyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Time.time);
+        //Debug.Log(Time.time);
         // si on avance
         if (Input.GetKey(inputFront) && !Input.GetKey(KeyCode.LeftShift))
         {
@@ -81,7 +81,22 @@ public class GuyControl : MonoBehaviour
             transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler(0, yRotation, 0), Time.deltaTime*5);
             test2 = false;
             test4= false;
-            
+        }
+        // Sprint à gauche
+        if (Input.GetKey(inputLeft) && Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.Translate(-petitspas * 2,0,0);
+            animations.Play("rig|Run_boy_run");
+            test2 = false;
+            test4= false;
+        }
+        // Sprint à droite
+        if (Input.GetKey(inputRight) && Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.Translate(petitspas * 2,0,0);
+            animations.Play("rig|Run_boy_run");
+            test2 = false;
+            test4= false;
         }
         // si on recule
         if (Input.GetKey(inputBack))
@@ -91,8 +106,8 @@ public class GuyControl : MonoBehaviour
             test2 = false;
             test4= false;
         }
-        // rotation a gauche
-        if (Input.GetKey(inputLeft))
+        // Marche à gauche
+        if (Input.GetKey(inputLeft) && !Input.GetKey(KeyCode.LeftShift))
         {
             transform.Translate(-petitspas,0,0);
             animations.Play("rig|Walk_devant");
@@ -100,8 +115,8 @@ public class GuyControl : MonoBehaviour
             test4= false;
         }
 
-        // rotation a  droite
-        if (Input.GetKey(inputRight))
+        // Marche a  droite
+        if (Input.GetKey(inputRight) && !Input.GetKey(KeyCode.LeftShift))
         {
             transform.Translate(petitspas,0,0);
             animations.Play("rig|Walk_devant");
@@ -117,7 +132,7 @@ public class GuyControl : MonoBehaviour
 
             // Saut
             gameObject.GetComponent<Rigidbody>().velocity = jumpSpeed;
-            animations.Play("jump");
+            animations.Play("rig|Sauter_sa_mere");
             test2 = false;
             test4= false;
         }
